@@ -1,5 +1,6 @@
 import random, math
 
+
 def generateGenerations(numGenerations, cities):    # generates generations and chooses the best solution for each
     population = generateInitialPopulation(len(cities))
     for i in range(numGenerations):
@@ -15,6 +16,7 @@ def generateGenerations(numGenerations, cities):    # generates generations and 
         print(bestRoute[0])
         print(f"Distance: {bestDistance:.2f}")
         print()
+
         
 def generateNewPopulation(cities, population):      # generates new population based on the old one
     newPopulation = []
@@ -29,6 +31,7 @@ def generateNewPopulation(cities, population):      # generates new population b
     
     return newPopulation
 
+
 def generateInitialPopulation(citiesSize, populationSize=100):      # generates first population
     population = []
     for _ in range(populationSize):
@@ -37,6 +40,7 @@ def generateInitialPopulation(citiesSize, populationSize=100):      # generates 
         population.append(route)
 
     return population
+
 
 def totalDistance(route, cities):       # calculates Euclidean distance
     distance = 0
@@ -47,10 +51,12 @@ def totalDistance(route, cities):       # calculates Euclidean distance
     
     return distance
 
+
 def tournamentSelection(cities, population, chromosomes=3):     # tournament selection method
     selected = random.sample(population, chromosomes)
     best = min(selected, key=lambda route: totalDistance(route, cities))
     return best
+
 
 def orderCrossover(stParent, ndParent):     # crossover method that takes interval of first parent, second parent is filling him up
     child = [None] * len(stParent)
@@ -66,6 +72,7 @@ def orderCrossover(stParent, ndParent):     # crossover method that takes interv
     
     return child
 
+
 def swapMutation(route, mutationRate=0.2):      # swap mutation method, permutation of list if conditions are met
     newRoute = route.copy()
     if random.random() < mutationRate:
@@ -74,9 +81,11 @@ def swapMutation(route, mutationRate=0.2):      # swap mutation method, permutat
 
     return newRoute
 
+
 def elitis(cities, population):     # returns first best route
     best = min(population, key=lambda route: totalDistance(route, cities))
     return best
+
 
 def loadCities(filename):   # loads cities from .txt into dict
     cities = {}
@@ -87,6 +96,7 @@ def loadCities(filename):   # loads cities from .txt into dict
             cities[int(line[0])] = (float(line[1]), float(line[2]))    
 
     return cities
+
 
 if __name__ == "__main__":
     cities = loadCities("resources/data_tsp.txt")
