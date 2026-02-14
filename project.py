@@ -13,6 +13,7 @@ def generateGenerations(numGenerations, cities):    # generates generations and 
         for city in bestRoute:
             print(f"{city} -> ", end="")
         print(bestRoute[0])
+        print(f"Distance: {bestDistance:.2f}")
         print()
         
 def generateNewPopulation(cities, population):      # generates new population based on the old one
