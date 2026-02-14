@@ -74,4 +74,4 @@ Kriterijum optimalnosti je **minimalna ukupna pređena distanca** svih gradova u
 ---
 
 ## Rezultati algoritma
-- Program ispisuje najbolju rutu po generaciji:  
+- Program ispisuje najbolju rutu po generaciji i njenu ukupnu distancu
