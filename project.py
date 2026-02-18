@@ -54,13 +54,12 @@ def totalDistance(route, cities):       # calculates Euclidean distance
 
 def tournamentSelection(cities, population, chromosomes=3):     # tournament selection method
     selected = random.sample(population, chromosomes)
-    best = min(selected, key=lambda route: totalDistance(route, cities))
-    return best
+    return elitis(cities, selected)
 
 
 def orderCrossover(stParent, ndParent):     # crossover method that takes interval of first parent, second parent is filling him up
     child = [None] * len(stParent)
-    start, end = sorted(random.sample(range(1, len(stParent)+1), 2))
+    start, end = sorted(random.sample(range(len(stParent)+1), 2))
     child[start:end] = stParent[start:end]
     
     ndParentIdx = 0
