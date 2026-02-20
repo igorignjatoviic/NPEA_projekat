@@ -23,8 +23,8 @@ def generateNewPopulation(cities, population):      # generates new population b
     newPopulation.append(elitis(cities, population))
 
     while len(newPopulation) < len(population):
-        stParent = tournamentSelection(cities, population, chromosomes=10)
-        ndParent = tournamentSelection(cities, population, chromosomes=10)
+        stParent = tournamentSelection(cities, population)
+        ndParent = tournamentSelection(cities, population)
         child = orderCrossover(stParent, ndParent)
         child = swapMutation(child)
         newPopulation.append(child)
@@ -46,13 +46,13 @@ def totalDistance(route, cities):       # calculates Euclidean distance
     distance = 0
     for i in range(len(route)):
         stCity = cities[route[i]]
-        ndCity = cities[route[(i+1) % len(route)]]
+        ndCity = cities[route[(i+1) % len(route)]]  # goes back to the starting city (with index 0) when it reaches the last index
         distance += math.sqrt((stCity[0] - ndCity[0])**2 + (stCity[1] - ndCity[1])**2)
     
     return distance
 
 
-def tournamentSelection(cities, population, chromosomes=3):     # tournament selection method
+def tournamentSelection(cities, population, chromosomes=10):     # tournament selection method
     selected = random.sample(population, chromosomes)
     return elitis(cities, selected)
 
